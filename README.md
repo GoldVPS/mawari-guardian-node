@@ -76,29 +76,64 @@ docker run -d --name mawari-guardian   --pull always   --restart unless-stopped 
 docker logs -f mawari-guardian
 ```
 
-Expected early log lines include:
+#### Expected early log lines include:
 - generating burner wallet
 - Using burner wallet {"address": "0x..."}  <-- this is the burner/operator ADDRESS
 
-You can print just the burner address line:
+#### You can print just the burner address line:
 ```bash
 docker logs mawari-guardian | grep -i "Using burner wallet"
 ```
 ## 3) Fund the Burner Wallet with 1 Test Token
-- If you requested 2 tokens to your MAIN wallet earlier, send 1 token to the burner wallet address.
-- If you only have 1 token, request an additional token at https://hub.testnet.mawari.net/ directly for the burner address.
+#### - If you requested 2 tokens to your MAIN wallet earlier, send 1 token to the burner wallet address.
+#### - If you only have 1 token, request an additional token at https://hub.testnet.mawari.net/ directly for the burner address.
 
-## 5) Delegate Guardian NFTs to the Burner Wallet
-1. Open the Guardian Dashboard: https://app.testnet.mawari.net/licenses
-2. Connect your MAIN wallet (where the NFTs were minted).
-3. Select all Guardian NFT IDs → click “Delegate” → paste the burner wallet address → confirm “Delegate”.
-4. Sign the transaction(s) in your wallet.
+## 4) Delegate Guardian NFTs to the Burner Wallet
+#### 1. Open the Guardian Dashboard: https://app.testnet.mawari.net/licenses
+#### 2. Connect your MAIN wallet (where the NFTs were minted).
+#### 3. Select all Guardian NFT IDs → click “Delegate” → paste the burner wallet address → confirm “Delegate”.
+#### 4. Sign the transaction(s) in your wallet.
 
 Check the container logs again. A healthy delegation sequence looks like:
 - received delegation offers count {"delegation offers": "1"}
 - accepting delegation offer {...}
 - transaction submitted {"hash": "0x..."}
 - delegation offer accepted {...}
+
+## 5) CRITICAL: Back Up the Burner/Operator PRIVATE KEY
+
+ Locate the cache file
+   ls -l ~/mawari
+
+   Look for a JSON file such as flohive-cache.json (name may vary if the node changes it in future versions).
+
+B. Extract and save the burner private key securely
+   Option 1 (quick view):
+     cat ~/mawari/flohive-cache.json | grep -i "privateKey"
+
+   Option 2 (best; requires jq):
+     sudo apt-get install -y jq
+     jq -r '.. | .privateKey? // empty' ~/mawari/flohive-cache.json
+
+   If you see an output like 0xabcdef..., that is your burner PRIVATE KEY.
+   Copy it into your password manager immediately.
+
+C. Create an encrypted or restricted backup file (example with chmod 600)
+   umask 077
+   jq -r '.. | .privateKey? // empty' ~/mawari/flohive-cache.json > ~/mawari/burner_pk_backup.txt
+   chmod 600 ~/mawari/burner_pk_backup.txt
+
+   Store this file OFF the server as well (secure notes/password manager, encrypted vault).
+   Never share this key publicly. Anyone with this key controls your burner wallet.
+
+### (Optional) Export the burner PRIVATE KEY temporarily into your shell (DO NOT leave it in history):
+   read -s BURNER_PK
+   # paste the key (it will be hidden); press Enter
+   unset BURNER_PK
+   # Avoid keeping private keys in plaintext variables or shell history.
+
+#### Important: Always treat the burner private key as sensitive. The burner receives delegated NFTs and tokens.
+Losing control of this key means losing control of your node’s operator wallet.
 
 ## 6) Daily Operations (cheat sheet)
 #### Show running containers
