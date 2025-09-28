@@ -3,11 +3,11 @@ Ubuntu 24.04 (Noble) — Plain Text Setup Guide
 
 ## System Requirements
 
-|  **Minimum**  |  **Recommended**  |
-|---------------|:-----------------:|
-|     2 vCPU    |       4 vCPU      |
-|    4 GB RAM   |      8 GB RAM     |
-|    20GB SSD   |      20GB SSD     |
+|  **Recommended**  |
+|-------------------|
+|       4 vCPU      |
+|      8 GB RAM     |
+|      20GB SSD     |
 
 ## Get a Server (Powered by GoldVPS)
 
