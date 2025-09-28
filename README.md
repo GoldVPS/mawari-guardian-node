@@ -19,7 +19,7 @@ Need a reliable VPS for this node?
 - ✅ NVMe SSD
 
 ## **You can purchase here:** https://goldvps.net  
-## Or contact us on Telegram: https://t.me/miftaikyy
+Or contact us on Telegram: https://t.me/miftaikyy
 
 
 ## 0) Prepare Wallet, Tokens, and Guardian NFTs (in your browser)
