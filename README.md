@@ -23,7 +23,7 @@ Or contact us on Telegram: https://t.me/miftaikyy
 
 
 ## 0) Prepare Wallet, Tokens, and Guardian NFTs (in your browser)
-1. Open https://testnet.mawari.net/ and connect your wallet. Switch to Mawari Network TestNet.
+1. Open https://testnet.mawari.net/mint and connect your wallet. Switch to Mawari Network TestNet.
 2. Faucet tokens: go to https://hub.testnet.mawari.net/ and request MAWARI test tokens (max 2) for your MAIN wallet address.
 3. Back on https://testnet.mawari.net/, mint up to 3 Guardian NFTs to your MAIN wallet.
 Note: Later you will delegate these NFTs to the burner/operator wallet created by the node.
