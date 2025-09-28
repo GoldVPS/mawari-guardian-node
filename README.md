@@ -104,7 +104,7 @@ Check the container logs again. A healthy delegation sequence looks like:
 
 #### Extract and save the burner private key securely
 ```bash
-  cat ~/mawari/flohive-cache.json | grep -i "privateKey"
+cat ~/mawari/flohive-cache.json | grep -i "privateKey"
 ```
 #### Important: Always treat the burner private key as sensitive. The burner receives delegated NFTs and tokens.
 Losing control of this key means losing control of your node’s operator wallet.
