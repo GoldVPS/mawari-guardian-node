@@ -81,48 +81,10 @@ Expected early log lines include:
 - Using burner wallet {"address": "0x..."}  <-- this is the burner/operator ADDRESS
 
 You can print just the burner address line:
+```bash
 docker logs mawari-guardian | grep -i "Using burner wallet"
-
-## 3) CRITICAL: Back Up the Burner/Operator PRIVATE KEY
-The container stores its cache in:  ~/mawari
-Typically, the burner wallet details (including the private key) are saved in a JSON cache file,
-commonly named:  flohive-cache.json  inside that directory.
-
-Actions:
-A. Locate the cache file
-   ls -l ~/mawari
-
-   Look for a JSON file such as flohive-cache.json (name may vary if the node changes it in future versions).
-
-B. Extract and save the burner private key securely
-   Option 1 (quick view):
-     cat ~/mawari/flohive-cache.json | grep -i "privateKey"
-
-   Option 2 (best; requires jq):
-     sudo apt-get install -y jq
-     jq -r '.. | .privateKey? // empty' ~/mawari/flohive-cache.json
-
-   If you see an output like 0xabcdef..., that is your burner PRIVATE KEY.
-   Copy it into your password manager immediately.
-
-C. Create an encrypted or restricted backup file (example with chmod 600)
-   umask 077
-   jq -r '.. | .privateKey? // empty' ~/mawari/flohive-cache.json > ~/mawari/burner_pk_backup.txt
-   chmod 600 ~/mawari/burner_pk_backup.txt
-
-   Store this file OFF the server as well (secure notes/password manager, encrypted vault).
-   Never share this key publicly. Anyone with this key controls your burner wallet.
-
-D. (Optional) Export the burner PRIVATE KEY temporarily into your shell (DO NOT leave it in history):
-   read -s BURNER_PK
-   # paste the key (it will be hidden); press Enter
-   unset BURNER_PK
-   # Avoid keeping private keys in plaintext variables or shell history.
-
-Important: Always treat the burner private key as sensitive. The burner receives delegated NFTs and tokens.
-Losing control of this key means losing control of your node’s operator wallet.
-
-## 4) Fund the Burner Wallet with 1 Test Token
+```
+## 3) Fund the Burner Wallet with 1 Test Token
 - If you requested 2 tokens to your MAIN wallet earlier, send 1 token to the burner wallet address.
 - If you only have 1 token, request an additional token at https://hub.testnet.mawari.net/ directly for the burner address.
 
