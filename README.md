@@ -89,7 +89,7 @@ docker logs mawari-guardian | grep -i "Using burner wallet"
 - If you only have 1 token, request an additional token at https://hub.testnet.mawari.net/ directly for the burner address.
 
 ## 5) Delegate Guardian NFTs to the Burner Wallet
-1. Open the Guardian Dashboard: https://app.testnet.mawari.net/
+1. Open the Guardian Dashboard: https://app.testnet.mawari.net/licenses
 2. Connect your MAIN wallet (where the NFTs were minted).
 3. Select all Guardian NFT IDs → click “Delegate” → paste the burner wallet address → confirm “Delegate”.
 4. Sign the transaction(s) in your wallet.
