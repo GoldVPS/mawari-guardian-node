@@ -21,21 +21,8 @@ Need a reliable VPS for this node?
 **You can purchase here:** https://goldvps.net  
 Or contact us on Telegram: https://t.me/miftaikyy
 
-### Prerequisites
-- Ubuntu 24.04 server with sudo/root access
-- A test wallet (e.g., MetaMask/OKX) in your browser
-- Stable internet access (must reach Google Artifact Registry)
-- Basic CLI familiarity
 
-### High-Level Flow
-1) Create/connect test wallet → request MAWARI test tokens → mint up to 3 Guardian NFTs
-2) Install Docker
-3) Run the Guardian Node container (it generates a burner wallet)
-4) BACK UP burner PRIVATE KEY (critical!) and fund the burner with 1 test token
-5) Delegate all Guardian NFTs from your main wallet to the burner wallet
-6) Verify logs and dashboard that the node is running
-
-0) Prepare Wallet, Tokens, and Guardian NFTs (in your browser)
+## 0) Prepare Wallet, Tokens, and Guardian NFTs (in your browser)
 1. Open https://testnet.mawari.net/ and connect your wallet. Switch to Mawari Network TestNet.
 2. Faucet tokens: go to https://hub.testnet.mawari.net/ and request MAWARI test tokens (max 2) for your MAIN wallet address.
 3. Back on https://testnet.mawari.net/, mint up to 3 Guardian NFTs to your MAIN wallet.
