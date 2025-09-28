@@ -1,15 +1,25 @@
 # Mawari Guardian Node (Testnet) — Decentralized Infrastructure Offering (DIO)
 Ubuntu 24.04 (Noble) — Plain Text Setup Guide
 
-### Requirements
 ## System Requirements
-
 
 |  **Minimum**  |  **Recommended**  |
 |---------------|:-----------------:|
 |     2 vCPU    |       4 vCPU      |
 |    4 GB RAM   |      8 GB RAM     |
 |    20GB SSD   |      20GB SSD     |
+
+## Get a Server (Powered by GoldVPS)
+
+Need a reliable VPS for this node?  
+**GoldVPS** offers SSD NVMe servers optimized for Docker.
+
+- ✅ Quick deployment on Ubuntu 24.04
+- ✅ Stable bandwidth
+- ✅ NVMe SSD
+
+**You can purchase here:** https://goldvps.net  
+Or contact us on Telegram: https://t.me/miftaikyy
 
 ### Prerequisites
 - Ubuntu 24.04 server with sudo/root access
