@@ -7,7 +7,7 @@ Ubuntu 24.04 (Noble) — Plain Text Setup Guide
 |-------------------|
 |       4 vCPU      |
 |      8 GB RAM     |
-|      20GB SSD     |
+|      50GB SSD     |
 
 ## Get a Server (Powered by GoldVPS)
 
