@@ -1,4 +1,4 @@
-Mawari Guardian Node (Testnet) — Decentralized Infrastructure Offering (DIO)
+# Mawari Guardian Node (Testnet) — Decentralized Infrastructure Offering (DIO)
 Ubuntu 24.04 (Noble) — Plain Text Setup Guide
 
 Overview
@@ -27,7 +27,7 @@ High-Level Flow
 3. Back on https://testnet.mawari.net/, mint up to 3 Guardian NFTs to your MAIN wallet.
 Note: Later you will delegate these NFTs to the burner/operator wallet created by the node.
 
-1) Install Docker (Ubuntu 24.04)
+## 1) Install Docker (Ubuntu 24.04)
 Run these commands one by one:
 
 ```bash
@@ -50,7 +50,7 @@ sudo apt-get update -y
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 ```
 
-# Verify
+### Verify
   ```bash
 docker --version
 ```
