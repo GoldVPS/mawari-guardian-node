@@ -102,36 +102,10 @@ Check the container logs again. A healthy delegation sequence looks like:
 
 ## 5) CRITICAL: Back Up the Burner/Operator PRIVATE KEY
 
- Locate the cache file
-   ls -l ~/mawari
-
-   Look for a JSON file such as flohive-cache.json (name may vary if the node changes it in future versions).
-
-B. Extract and save the burner private key securely
-   Option 1 (quick view):
-     cat ~/mawari/flohive-cache.json | grep -i "privateKey"
-
-   Option 2 (best; requires jq):
-     sudo apt-get install -y jq
-     jq -r '.. | .privateKey? // empty' ~/mawari/flohive-cache.json
-
-   If you see an output like 0xabcdef..., that is your burner PRIVATE KEY.
-   Copy it into your password manager immediately.
-
-C. Create an encrypted or restricted backup file (example with chmod 600)
-   umask 077
-   jq -r '.. | .privateKey? // empty' ~/mawari/flohive-cache.json > ~/mawari/burner_pk_backup.txt
-   chmod 600 ~/mawari/burner_pk_backup.txt
-
-   Store this file OFF the server as well (secure notes/password manager, encrypted vault).
-   Never share this key publicly. Anyone with this key controls your burner wallet.
-
-### (Optional) Export the burner PRIVATE KEY temporarily into your shell (DO NOT leave it in history):
-   read -s BURNER_PK
-   # paste the key (it will be hidden); press Enter
-   unset BURNER_PK
-   # Avoid keeping private keys in plaintext variables or shell history.
-
+#### Extract and save the burner private key securely
+```bash
+  cat ~/mawari/flohive-cache.json | grep -i "privateKey"
+```
 #### Important: Always treat the burner private key as sensitive. The burner receives delegated NFTs and tokens.
 Losing control of this key means losing control of your node’s operator wallet.
 
