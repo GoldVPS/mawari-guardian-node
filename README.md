@@ -30,40 +30,50 @@ Note: Later you will delegate these NFTs to the burner/operator wallet created b
 1) Install Docker (Ubuntu 24.04)
 Run these commands one by one:
 
+```bash
 sudo apt-get update -y
 sudo apt-get install -y ca-certificates curl gnupg
+```
 
-# Add Docker GPG key
+  ```bash
 sudo install -m 0755 -d /etc/apt/keyrings
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 sudo chmod a+r /etc/apt/keyrings/docker.gpg
+```
 
-# Add Docker repository (Ubuntu 24.04 = noble)
+  ```bash
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu noble stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+```
 
-# Install Docker Engine + Compose plugin
+  ```bash
 sudo apt-get update -y
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-
-# (Optional) allow non-root user to use Docker; log out/in after this
-sudo usermod -aG docker $USER
+```
 
 # Verify
+  ```bash
 docker --version
+```
 
 2) Run the Guardian Node (Docker)
 Set OWNER_ADDRESS to your MAIN wallet address (the one that owns the Guardian NFTs).
-No private keys are needed on the server; the node will generate a burner wallet automatically.
+the node will generate a burner wallet automatically.
 
+```bash
 export MNTESTNET_IMAGE=us-east4-docker.pkg.dev/mawarinetwork-dev/mwr-net-d-car-uses4-public-docker-registry-e62e/mawari-node:latest
 export OWNER_ADDRESS=0xYOUR_OWNER_ADDRESS
+```
 
 # Create cache folder and run the container (daemon + auto-restart)
+```bash
 mkdir -p ~/mawari
 docker run -d --name mawari-guardian   --pull always   --restart unless-stopped   -v ~/mawari:/app/cache   -e OWNERS_ALLOWLIST=$OWNER_ADDRESS   $MNTESTNET_IMAGE
+```
 
 # Follow logs (Ctrl+C to exit)
+```bash
 docker logs -f mawari-guardian
+```
 
 Expected early log lines include:
 - generating burner wallet
@@ -129,21 +139,28 @@ Check the container logs again. A healthy delegation sequence looks like:
 
 6) Daily Operations (cheat sheet)
 # Show running containers
+```bash
 docker ps
+```
 
 # Tail logs
+```bash
 docker logs -f mawari-guardian
+```
 
 # Stop / start / restart
+```bash
 docker stop mawari-guardian
 docker start mawari-guardian
 docker restart mawari-guardian
+```
 
 # Update to latest image (cache and burner wallet persist in ~/mawari)
+```bash
 docker pull $MNTESTNET_IMAGE
 docker rm -f mawari-guardian
 docker run -d --name mawari-guardian   --pull always --restart unless-stopped   -v ~/mawari:/app/cache   -e OWNERS_ALLOWLIST=$OWNER_ADDRESS   $MNTESTNET_IMAGE
-
+```
 Notes and Tips
 - OWNER_ADDRESS is only needed at container creation time. If you recreate the container in a new shell session, export it again before docker run.
 - If you want to reset and generate a BRAND NEW burner wallet, stop the container and remove/backup the cache JSON (e.g., flohive-cache.json), then start the container again. You must faucet and delegate again to the NEW burner address.
