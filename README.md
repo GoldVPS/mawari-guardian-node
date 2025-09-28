@@ -1,11 +1,13 @@
 # Mawari Guardian Node (Testnet) — Decentralized Infrastructure Offering (DIO)
 Ubuntu 24.04 (Noble) — Plain Text Setup Guide
 
-### Overview
-- Run the Guardian Node in Docker on Ubuntu 24.04.
-- The container auto-generates a burner/operator wallet on first start.
-- You MUST delegate your Guardian NFTs from your main wallet to this burner wallet.
-- Very important: Back up the burner wallet PRIVATE KEY as soon as it is generated.
+### Requirements
+## System Requirements
+
+| Tier         | vCPU | RAM  | Storage | OS               | Network                 |
+|--------------|:----:|:----:|:-------:|------------------|-------------------------|
+| **Minimum**  | 2    | 4 GB | 20 GB SSD | Ubuntu 24.04 LTS | Stable internet, 10+ Mbps |
+| **Recommended** | 4 | 8 GB | 20 GB SSD | Ubuntu 24.04 LTS | Stable internet, 20+ Mbps |
 
 ### Prerequisites
 - Ubuntu 24.04 server with sudo/root access
