@@ -4,10 +4,12 @@ Ubuntu 24.04 (Noble) — Plain Text Setup Guide
 ### Requirements
 ## System Requirements
 
-| Tier         | vCPU | RAM  | Storage | OS               | Network                 |
-|--------------|:----:|:----:|:-------:|------------------|-------------------------|
-| **Minimum**  | 2    | 4 GB | 20 GB SSD | Ubuntu 24.04 LTS | Stable internet, 10+ Mbps |
-| **Recommended** | 4 | 8 GB | 20 GB SSD | Ubuntu 24.04 LTS | Stable internet, 20+ Mbps |
+
+|  **Minimum**  |  **Recommended**  |
+|---------------|:-----------------:|
+|     2 vCPU    |       4 vCPU      |
+|    4 GB RAM   |      8 GB RAM     |
+|    20GB SSD   |      20GB SSD     |
 
 ### Prerequisites
 - Ubuntu 24.04 server with sudo/root access
