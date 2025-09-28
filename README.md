@@ -28,7 +28,7 @@ High-Level Flow
 Note: Later you will delegate these NFTs to the burner/operator wallet created by the node.
 
 ## 1) Install Docker (Ubuntu 24.04)
-Run these commands one by one:
+#### Run these commands one by one:
 
 ```bash
 sudo apt-get update -y
@@ -50,27 +50,27 @@ sudo apt-get update -y
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 ```
 
-##### Verify
+#### Verify
   ```bash
 docker --version
 ```
 
-2) Run the Guardian Node (Docker)
-Set OWNER_ADDRESS to your MAIN wallet address (the one that owns the Guardian NFTs).
-the node will generate a burner wallet automatically.
+## 2) Run the Guardian Node (Docker)
+#### Set OWNER_ADDRESS to your MAIN wallet address (the one that owns the Guardian NFTs).
+##### the node will generate a burner wallet automatically.
 
 ```bash
 export MNTESTNET_IMAGE=us-east4-docker.pkg.dev/mawarinetwork-dev/mwr-net-d-car-uses4-public-docker-registry-e62e/mawari-node:latest
 export OWNER_ADDRESS=0xYOUR_OWNER_ADDRESS
 ```
 
-# Create cache folder and run the container (daemon + auto-restart)
+#### Create cache folder and run the container (daemon + auto-restart)
 ```bash
 mkdir -p ~/mawari
 docker run -d --name mawari-guardian   --pull always   --restart unless-stopped   -v ~/mawari:/app/cache   -e OWNERS_ALLOWLIST=$OWNER_ADDRESS   $MNTESTNET_IMAGE
 ```
 
-# Follow logs (Ctrl+C to exit)
+#### Follow logs (Ctrl+C to exit)
 ```bash
 docker logs -f mawari-guardian
 ```
@@ -82,7 +82,7 @@ Expected early log lines include:
 You can print just the burner address line:
 docker logs mawari-guardian | grep -i "Using burner wallet"
 
-3) CRITICAL: Back Up the Burner/Operator PRIVATE KEY
+## 3) CRITICAL: Back Up the Burner/Operator PRIVATE KEY
 The container stores its cache in:  ~/mawari
 Typically, the burner wallet details (including the private key) are saved in a JSON cache file,
 commonly named:  flohive-cache.json  inside that directory.
@@ -121,11 +121,11 @@ D. (Optional) Export the burner PRIVATE KEY temporarily into your shell (DO NOT 
 Important: Always treat the burner private key as sensitive. The burner receives delegated NFTs and tokens.
 Losing control of this key means losing control of your node’s operator wallet.
 
-4) Fund the Burner Wallet with 1 Test Token
+## 4) Fund the Burner Wallet with 1 Test Token
 - If you requested 2 tokens to your MAIN wallet earlier, send 1 token to the burner wallet address.
 - If you only have 1 token, request an additional token at https://hub.testnet.mawari.net/ directly for the burner address.
 
-5) Delegate Guardian NFTs to the Burner Wallet
+## 5) Delegate Guardian NFTs to the Burner Wallet
 1. Open the Guardian Dashboard: https://app.testnet.mawari.net/
 2. Connect your MAIN wallet (where the NFTs were minted).
 3. Select all Guardian NFT IDs → click “Delegate” → paste the burner wallet address → confirm “Delegate”.
@@ -137,25 +137,25 @@ Check the container logs again. A healthy delegation sequence looks like:
 - transaction submitted {"hash": "0x..."}
 - delegation offer accepted {...}
 
-6) Daily Operations (cheat sheet)
-# Show running containers
+## 6) Daily Operations (cheat sheet)
+#### Show running containers
 ```bash
 docker ps
 ```
 
-# Tail logs
+#### Tail logs
 ```bash
 docker logs -f mawari-guardian
 ```
 
-# Stop / start / restart
+#### Stop / start / restart
 ```bash
 docker stop mawari-guardian
 docker start mawari-guardian
 docker restart mawari-guardian
 ```
 
-# Update to latest image (cache and burner wallet persist in ~/mawari)
+#### Update to latest image (cache and burner wallet persist in ~/mawari)
 ```bash
 docker pull $MNTESTNET_IMAGE
 docker rm -f mawari-guardian
